@@ -13,10 +13,12 @@
 
 + (TTTableAccessoryView *)accessoryWithColor:(UIColor *)color type:(UITableViewCellAccessoryType)type
 {
-  TTTableAccessoryView *view = [[TTTableAccessoryView alloc] initWithFrame:CGRectMake(0, 0, 15.0, 15.0)];
-  view.accessoryColor = color;
-  view.type = type;
-  return view;
+    if (type == UITableViewCellAccessoryNone) return nil;
+
+    TTTableAccessoryView *view = [[TTTableAccessoryView alloc] initWithFrame:CGRectMake(0, 0, 15.0, 15.0)];
+    view.accessoryColor = color;
+    view.type = type;
+    return view;
 }
 
 
@@ -35,9 +37,12 @@
     case UITableViewCellAccessoryCheckmark:
       [self drawCheckmark:rect];
       break;
-      
-    default:
+
+   case UITableViewCellAccessoryDisclosureIndicator:
       [self drawDisclosure:rect];
+      break;
+
+    default:
       break;
   }
 }
